@@ -15,21 +15,37 @@ def mostrar_lista():
         print(f"     {i+1}. {lista[i]}\n")
     print("==============================================\n")
 def alterar_item():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("=========== Supermercado Bora Bill ===========\n")
-    print("         A lista de supermercado é:\n")
-    for i in range(len(lista)):
-        print(f"     {i+1}. {lista[i]}\n")
-    item_alt = int(input(" Digite o número do item que deseja alterar: "))
-    lista[item_alt] = input("\n Digite o novo item: ")
+    while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("=========== Supermercado Bora Bill ===========\n")
+        print("         A lista de supermercado é:\n")
+        for i in range(len(lista)):
+            print(f"     {i+1}. {lista[i]}\n")
+        item_alt = int(input(" Digite o número do item que deseja alterar: "))
+        if item_alt > len(lista) or item_alt < 1:
+            print(" Opção inválida! Tente novamente.")
+            time.sleep(1)
+            continue
+        else:
+            item_alt -= 1
+            lista[item_alt] = input("\n Digite o novo item: ")
+            break
 def remover_item():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("=========== Supermercado Bora Bill ===========\n")
-    print("         A lista de supermercado é:\n")
-    for i in range(len(lista)):
-        print(f"     {i+1}. {lista[i]}\n")
-    item_del = int(input(" Digite o número do item que deseja remover: "))
-    del lista[item_del]
+    while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("=========== Supermercado Bora Bill ===========\n")
+        print("         A lista de supermercado é:\n")
+        for i in range(len(lista)):
+            print(f"     {i+1}. {lista[i]}\n")
+        item_del = int(input(" Digite o número do item que deseja remover: "))
+        item_del -= 1
+        if item_del > len(lista) or item_del < 1:
+            print(" Opção inválida! Tente novamente.")
+            time.sleep(1)
+            continue
+        else:
+            del lista[item_del]
+            break
 def salvar_lista():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("=========== Supermercado Bora Bill ===========\n")
@@ -42,7 +58,7 @@ def salvar_lista():
         arquivo.write(f"     {i+1}. {lista[i]}\n")
     arquivo.write("==============================================")
     arquivo.close()
-while i < 1:
+while True:
     adicionar_item()
     novo_item = input("\n   Deseja adicionar outro item? (s/n): ")
     if novo_item.lower() == 's':
